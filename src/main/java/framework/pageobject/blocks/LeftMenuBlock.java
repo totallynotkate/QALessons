@@ -13,8 +13,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 public class LeftMenuBlock extends PageObject{
     private static final String CSS_SETTINGS = ".navBoxHeader.menu-settings.accordion-toggle";
     private static final String CSS_PROFILE_PAGE = "a[href='/settings']";
-    private static final String CSS_H2 = "h2";
-    private static final String H2_TEXT = "User Information";
     private WebElement leftMenuBLock;
 
     public LeftMenuBlock(WebDriver driver, WebElement leftMenuBLock) {
@@ -25,7 +23,8 @@ public class LeftMenuBlock extends PageObject{
     public ProfilePage goToProfilePage(){
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CSS_SETTINGS))).click();
         wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(CSS_PROFILE_PAGE))).click();
-        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(CSS_H2), H2_TEXT));
+        wait.until(ExpectedConditions.textToBePresentInElementLocated(By.cssSelector(ProfilePage.getHeaderCSS()),
+                ProfilePage.getHeaderText()));
         return new ProfilePage(driver);
     }
 }
